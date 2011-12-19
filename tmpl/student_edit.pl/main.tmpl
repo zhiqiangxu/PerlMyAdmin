@@ -1,0 +1,108 @@
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <div id="message">
+    <TMPL_IF NAME="message">
+        <TMPL_VAR NAME="message">
+        <hr />
+    </TMPL_IF>
+    </div>
+    <div id="error">
+    <TMPL_IF NAME="error">
+        <TMPL_VAR NAME="error">
+        <hr />
+    </TMPL_IF>
+    </div>
+    <form method="POST">
+    <table>
+        <tr>
+            <td>姓名</td>
+            <td>
+                <input type="text" value="<TMPL_VAR NAME="name">" name="name" />
+                <input type="hidden" name="id" value="<TMPL_VAR NAME="id">" />
+            </td>
+        </tr>
+        <tr>
+            <td>学号</td>
+            <td>
+                <input type="text" value="<TMPL_VAR NAME="no">" name="no" readonly="readonly" />
+            </td>
+        </tr>
+        <tr>
+            <td>个人简介</td>
+            <td>
+                <textarea name="introduction"><TMPL_VAR NAME="introduction"></textarea>
+            </td>
+        </tr>
+       <tr>
+            <td colspan="2">
+            <fieldset>
+                <legend>籍贯</legend>
+                <table>
+                    <tr>
+                        <td>省</td>
+                        <td>
+                            <select name="province_id" id="province">
+                                <option value="-1">--</option>
+                                <TMPL_LOOP NAME="provinceloop">
+                                    <option value="<TMPL_VAR NAME="id">" <TMPL_IF NAME="selected">selected="selected"</TMPL_IF>><TMPL_VAR NAME="name"></option>
+                                </TMPL_LOOP>
+                            </select>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>市</td>
+                        <td>
+                            <select name="city_id" id="city">
+                                <option value="-1">--</option>
+                                <TMPL_LOOP NAME="cityloop">
+                                    <option value="<TMPL_VAR NAME="id">" <TMPL_IF NAME="selected">selected="selected"</TMPL_IF>><TMPL_VAR NAME="name"></option>
+                                </TMPL_LOOP>
+                            </select>
+                        </td>
+                    </tr>
+               </table>
+            </fieldset>
+            </td>
+        </tr>
+        <tr>
+            <td>学校</td>
+            <td>
+                <input type="text" value="<TMPL_VAR NAME="school">" name="school" />
+            </td>
+        </tr>
+        <tr>
+            <td>专业</td>
+            <td>
+                <input type="text" value="<TMPL_VAR NAME="major">" name="major" />
+            </td>
+        </tr>
+        <tr>
+            <td>出生日期</td>
+            <td>
+                <input type="text" value="<TMPL_VAR NAME="birthday">" name="birthday" />
+            </td>
+        </tr>
+        <tr>
+            <td>性别</td>
+            <td>
+                <select name="gender" value="<TMPL_VAR NAME="gender">">
+                    <option value="-1">--</option>
+                    <option value="1" <TMPL_IF NAME="gender">selected="selected"</TMPL_IF>>男</option>
+                    <option value="0" <TMPL_UNLESS NAME="gender">selected="selected"</TMPL_IF>>女</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="提交" />
+            </td>
+            <td>
+                <input type="button" value="取消" onclick="javascript:window.location='student_list.pl'" />
+            </td>
+        </tr>
+        <TMPL_INCLUDE NAME="../footer.tmpl">
+    </table>
+    </form>
+</body>

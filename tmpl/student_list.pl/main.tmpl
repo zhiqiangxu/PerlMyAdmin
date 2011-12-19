@@ -1,0 +1,112 @@
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <a href="student_add.pl">New</a>
+            </td>
+        </tr>
+    </table>
+    <hr />
+    <form method="GET">
+        <table>
+            <tr>
+                <td>
+                    <span>省</span>
+                </td>
+                <input type="hidden" name="page" value="1" />
+                <td>
+                    <select name="province_id" id="province">
+                        <option value="-1">--</option>
+                        <TMPL_LOOP NAME="provinceloop">
+                            <option value="<TMPL_VAR NAME="id">" <TMPL_IF NAME="selected">selected="selected"</TMPL_IF>><TMPL_VAR NAME="name"></option>
+                        </TMPL_LOOP>
+                    </select>
+                </td>
+                <td>
+                    <span>市</span>
+                </td>
+                <td>
+                    <select name="city_id" id="city">
+                        <option value="-1">--</option>
+                        <TMPL_LOOP NAME="cityloop">
+                            <option value="<TMPL_VAR NAME="id">" <TMPL_IF NAME="selected">selected="selected"</TMPL_IF>><TMPL_VAR NAME="name"></option>
+                        </TMPL_LOOP>
+                    </select>
+                </td>
+                <td>
+                    <span>关键词</span>
+                </td>
+                <td>
+                    <input type="text" name="keyword" id="search_text" value="<TMPL_VAR NAME="keyword" ESCAPE=HTML>" />
+                </td>
+                <td>
+                    <input type="submit" value="搜索" id="search_button" />
+                </td>
+                <td>
+                    <input type="button" value="重置" id="reset" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <hr />
+    <table>
+        <tr>
+            <th>OP</th>
+            <th>city</th>
+            <th>province</th>
+            <th>name</th>
+            <th>no</th>
+            <th>introduction</th>
+            <th>school</th>
+            <th>major</th>
+            <th>birthday</th>
+            <th>gender</th>
+        </tr>
+        <TMPL_LOOP NAME="studentloop">
+        <tr>    
+            <td>
+                <span><a href="student_edit.pl?id=<TMPL_VAR NAME="id">">Edit</a></span>
+                |
+                <span><a href="student_delete.pl?id=<TMPL_VAR NAME="id">">Delete</span>
+            </td>
+            <td style="width:150px;overflow:hidden;">
+                <TMPL_VAR ESCAPE=HTML NAME="city">
+            </td>
+            <td>
+                <TMPL_VAR NAME="province">
+            </td>
+            <td>
+                <TMPL_VAR NAME="name">
+            </td>
+            <td>
+                <TMPL_VAR NAME="no">
+            </td>
+            <td>
+                <TMPL_VAR NAME="introduction">
+            </td>
+            <td>
+                <TMPL_VAR ESCAPE=HTML NAME="school">
+            </td>
+            <td>
+                <TMPL_VAR NAME="major">
+            </td>
+            <td>
+                <TMPL_VAR NAME="birthday">
+            </td>
+            <td>
+                <TMPL_VAR NAME="gender_literal">
+            </td>
+        </tr>
+        </TMPL_LOOP>
+        <tr>
+            <td colspan="2">
+                <TMPL_INCLUDE NAME="paginator.tmpl">
+            </td>
+        </tr>
+
+        <TMPL_INCLUDE NAME="../footer.tmpl">
+    </table>
+</body>

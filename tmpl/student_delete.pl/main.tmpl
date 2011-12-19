@@ -1,0 +1,116 @@
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>
+        删除用户ID<TMPL_VAR NAME="id">
+    </title>
+</head>
+<body>
+    <div id="message">
+    </div>
+    <form method="POST">
+    <table>
+        <tr>
+            <td>
+                姓名
+            </td>
+            <td>
+                <span>
+                    <TMPL_VAR NAME="name">
+                </span>
+                <input type="hidden" name="id" value="<TMPL_VAR NAME="id">" />
+                <input type="hidden" name="referrer" value="<TMPL_VAR NAME="referrer">" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                学号
+            </td>
+            <td>
+                <span>
+                    <TMPL_VAR NAME="no">
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                个人简介
+            </td>
+            <td>
+                <span>
+                    <TMPL_VAR NAME="introduction">
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                省
+            </td>
+            <td>
+                <span>
+                    <TMPL_VAR NAME="province">
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                市
+            </td>
+            <td>
+                <span>
+                    <TMPL_VAR ESCAPE=HTML NAME="city">
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                学校
+            </td>
+            <td>
+                 <span>
+                    <TMPL_VAR ESCAPE=HTML NAME="school">
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                专业
+            </td>
+            <td>
+                <span>
+                    <TMPL_VAR NAME="major">
+                </span>           
+            </td>
+        </tr>
+        <tr>
+            <td>
+                出生日期
+            </td>
+            <td>
+                <span>
+                    <TMPL_VAR NAME="birthday">
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                性别
+            </td>
+            <td>
+                <span>
+                    <TMPL_IF NAME="gender">男</TMPL_IF>
+                    <TMPL_UNLESS NAME="gender">女</TMPL_IF>
+                </span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" value="删除" />
+            </td>
+            <td>
+                <input type="button" value="取消" onclick="javascript:window.location = 'student_list.pl'" />
+            </td>
+        </tr>
+    </table>
+    </form>
+</body>

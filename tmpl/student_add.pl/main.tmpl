@@ -1,0 +1,122 @@
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <div id="message">
+    <TMPL_IF NAME="message">
+        <TMPL_VAR NAME="message">
+        <hr />
+    </TMPL_IF>
+    </div>
+    <div id="error">
+    <TMPL_IF NAME="error">
+        <TMPL_VAR NAME="error">
+        <hr />
+    </TMPL_IF>
+    </div>
+    <form method="POST">
+        <table>
+            <tr>
+                <td>
+                    学号
+                </td>
+                <td>
+                    <input type="text" name="no" value="<TMPL_VAR NAME="no">" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    姓名
+                </td>
+                <td>
+                    <input type="text" name="name" value="<TMPL_VAR NAME="name">" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    性别
+                </td>
+                <td>
+                    <label><input type="radio" name="gender" value="1" <TMPL_IF NAME="gender_1">checked="checked"</TMPL_IF> />男</label>
+                    <label><input type="radio" name="gender" value="0" <TMPL_IF NAME="gender_0">checked="checked"</TMPL_IF> />女</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    学校
+                </td>
+                <td>
+                    <input type="text" name="school" value="<TMPL_VAR NAME="school">" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    专业
+                </td>
+                <td>
+                    <input type="text" name="major" value="<TMPL_VAR NAME="major">" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    出生日期
+                </td>
+                <td>
+                    <input type="text" name="birthday" value="<TMPL_VAR NAME="birthday">" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <fieldset>
+                        <legend>籍贯</legend>
+                        <table>
+                            <tr>
+                                <td>
+                                    省
+                                </td>
+                                <td>
+                                    <select name="province_id" id="province">
+                                        <option value="-1">--</option>
+                                        <TMPL_LOOP NAME="provinceloop">
+                                            <option value="<TMPL_VAR NAME="id">" <TMPL_IF NAME="selected">selected="selected"</TMPL_IF>><TMPL_VAR NAME="name"></option>
+                                        </TMPL_LOOP>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    市
+                                </td>
+                                <td>
+                                     <select name="city_id" id="city">
+                                        <option value="-1">--</option>
+                                        <TMPL_LOOP NAME="cityloop">
+                                            <option value="<TMPL_VAR NAME="id">" <TMPL_IF NAME="selected">selected="selected"</TMPL_IF>><TMPL_VAR NAME="name"></option>
+                                        </TMPL_LOOP>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            <tr>
+                <td>
+                    个人简介
+                </td>
+                <td>
+                    <textarea name="introduction"><TMPL_VAR NAME="introduction"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Submit" />
+                </td>
+                 <td>
+                    <input onclick="javascript:window.location='student_list.pl';" type="button" value="Back" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <TMPL_INCLUDE NAME="../footer.tmpl">
+</body>
