@@ -16,7 +16,7 @@ sub new {
 sub initDBH {
     my ($self, %args) = @_;
     $self->dbh(DBI->connect(DSN, DB_USER, DB_PASS, { RaiseError => 0 }));
-#$self->execute("SET NAMES UTF8");
+$self->execute("SET NAMES UTF8");
 }
 
 sub parse_where {
