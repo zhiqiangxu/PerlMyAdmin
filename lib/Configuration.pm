@@ -7,8 +7,8 @@ our @EXPORT_OK = qw/DSN DB_USER DB_PASS DB_NAME/;
 
 use constant DSN => "DBI:mysql:test_shore:localhost";
 use constant DB_NAME => 'test_shore';
-use constant DB_USER => "";
-use constant DB_PASS => "";
+use constant DB_USER => "root";
+use constant DB_PASS => "111111";
 
 
 1
