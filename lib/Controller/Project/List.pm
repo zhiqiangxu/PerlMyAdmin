@@ -26,6 +26,7 @@ sub generate_filter {
 
 sub display {
     my ($self) = @_;
+    $self->authenticate;
     my ($page, $name) = ($self->param('page') ? $self->param('page') : 1, $self->param('name'));
     my @closedloop = ({value => 1, name => '是'}, {value => 0, name => '否'});
     if($self->param('closed') eq '1' || $self->param('closed') eq '0'){

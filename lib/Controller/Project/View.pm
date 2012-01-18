@@ -11,6 +11,7 @@ use Date::Calc qw/Today Delta_Days/;
 
 sub display {
     my ($self) = @_;
+    $self->authenticate;
     my ($message, $error, $submited_params);
     my $student = Model::Student->new;
     $self->redirect('project_list.pl') unless $self->url_param('id');

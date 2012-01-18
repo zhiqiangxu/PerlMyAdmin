@@ -12,6 +12,7 @@ use Date::Calc qw/Today Delta_Days/;
 
 sub display {
     my ($self) = @_;
+    $self->authenticate;
     my $student = Model::Student->new;
     my $message;
     if('POST' eq $self->query->request_method){

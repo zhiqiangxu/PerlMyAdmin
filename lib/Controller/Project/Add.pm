@@ -51,6 +51,7 @@ sub collect_error {
 
 sub display {
     my ($self) = @_; 
+    $self->authenticate;
     my ($message, $error, $submited_params);
     if('POST' eq $self->query->request_method){
         my ($fail, $result) = $self->validate($self->query);

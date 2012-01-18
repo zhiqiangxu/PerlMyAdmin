@@ -58,6 +58,7 @@ sub collect_error {
 
 sub display {
     my ($self) = @_; 
+    $self->authenticate;
     my ($message, $error, $submited_params);
     if('POST' eq $self->query->request_method){
         $self->param(-name => 'closed', -value => 0) unless($self->param('closed'));

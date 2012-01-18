@@ -16,13 +16,14 @@ sub new {
     return bless {TMPL_MAIN => undef, jsloop => [], query => exists $args{query} ? $args{query} : CGI->new, tmpl => undef, cookie => [], log_file => '../log.txt', %args}, $class;
 }
 
-
-
-
-
 sub redirect {
     my ($self, $uri) = @_;
-    print $self->query->redirect($uri);
+    if($self->{cookie}){
+        print $self->query->redirect( -url => $uri, -cookie => $self->{cookie});
+    }
+    else{
+        print $self->query->redirect( $uri);
+    }
 }
 
 sub template {
@@ -37,19 +38,20 @@ sub template {
 
 sub cookie {
     my ($self, @args) = @_;
-    if(0 eq @args){
+    if(0 == @args){
         #fetch all
         return CGI::Cookie->fetch;
     }
-    elsif(1 eq @args){
+    elsif(1 == @args){
         #fetch one
         my %cookies = CGI::Cookie->fetch;
-        return %cookies && exists $cookies{$args[0]} ? $cookies{$args[0]} : undef;
+        return %cookies && exists $cookies{$args[0]} ? $cookies{$args[0]}->value : undef;
     }
-    elsif(2 eq @args){
+    elsif(2 == @args){
         #set one
         my $cookie = CGI::Cookie->new(-name => $args[0], -value => $args[1]);
         push @{$self->{cookie}}, $cookie;
+        return;
     }
     die "error usage of sub cookie";
 }

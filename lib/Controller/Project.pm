@@ -5,6 +5,15 @@ use base qw/Controller::Base/;
 use Constants qw/TRUE/;
 use FormValidator::Simple;
 use Date::Calc qw/Today Delta_Days Add_Delta_Days/;
+use Digest::MD5 qw/md5_base64/;
+
+sub authenticate {
+    my ($self) = @_;
+    unless($self->cookie('psw') and ($self->cookie('psw') eq md5_base64('sdc'))){
+        $self->redirect('project_password.pl');
+        exit;
+    }
+}
 
 sub _date_diff {
     return Delta_Days(@_);
