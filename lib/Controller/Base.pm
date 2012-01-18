@@ -49,7 +49,7 @@ sub cookie {
     }
     elsif(2 == @args){
         #set one
-        my $cookie = CGI::Cookie->new(-name => $args[0], -value => $args[1], -expires=>'+3d');
+        my $cookie = CGI::Cookie->new(-name => $args[0], -value => $args[1], -expires=>'+7d');
         push @{$self->{cookie}}, $cookie;
         return;
     }

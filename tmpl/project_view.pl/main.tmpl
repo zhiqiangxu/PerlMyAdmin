@@ -14,7 +14,7 @@
         <hr />
     </TMPL_IF>
     </div>
-    <table>
+    <table border=1 style="border-collapse:collapse;">
         <tr>
             <td>项目</td>
             <td>
@@ -40,19 +40,19 @@
             </td>
         </tr>
         <tr>
-            <td>sh审核</td>
+            <td>sh_cr</td>
             <td>
                 <TMPL_VAR NAME="codereview_sh"> 
             </td>
         </tr>
         <tr>
-            <td>jp审核</td>
+            <td>jp_cr</td>
             <td>
                 <TMPL_VAR NAME="codereview_jp"> 
             </td>
         </tr>
         <tr>
-            <td>jp质检</td>
+            <td>jp_qa</td>
             <td>
                 <TMPL_VAR NAME="qa_jp"> 
             </td>
@@ -96,5 +96,13 @@
 
         <TMPL_INCLUDE NAME="../footer.tmpl">
     </table>
+    <br />
+    <hr />
+    <a href="project_edit.pl?id=<TMPL_VAR NAME="id">">编辑</a>
+    <br />
+    <hr />
+    <a href="project_delete.pl?id=<TMPL_VAR NAME="id">">删除</a>
+    <br />
+    <br />
     <a href="project_list.pl">返回项目列表</a>
 </body>

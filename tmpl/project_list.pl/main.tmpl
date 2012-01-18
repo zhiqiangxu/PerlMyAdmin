@@ -1,5 +1,8 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <style>a {text-decoration:none;}</style>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" href="favicon.gif" type="image/gif" />
 </head>
 <body>
     <table>
@@ -40,16 +43,15 @@
         </table>
     </form>
     <hr />
-    <table cellspacing="20">
+    <table border=1 style="border-collapse:collapse;width:100%;">
         <tr>
-            <th>操作</th>
             <th>项目</th>
             <th>kick_off</th>
             <th>式样fix</th>
             <th>开发</th>
-            <th>sh审核</th>
-            <th>jp审核</th>
-            <th>jp质检</th>
+            <th>sh_cr</th>
+            <th>jp_cr</th>
+            <th>jp_qa</th>
             <th>发布日期</th>
             <th>状态</th>
             <th>理论状态</th>
@@ -58,32 +60,25 @@
         </tr>
         <TMPL_LOOP NAME="studentloop">
         <tr>    
-            <td>
-                <span><a href="project_view.pl?id=<TMPL_VAR NAME="id">">View</a></span>
-                |
-                <span><a href="project_edit.pl?id=<TMPL_VAR NAME="id">">Edit</a></span>
-                |
-                <span><a href="project_delete.pl?id=<TMPL_VAR NAME="id">">Delete</span>
-            </td>
             <td style="width:150px;overflow:hidden;">
-                <TMPL_VAR ESCAPE=HTML NAME="name">
+                <a href="project_view.pl?id=<TMPL_VAR NAME="id">"><TMPL_VAR ESCAPE=HTML NAME="name"></a>
             </td>
-            <td>
+            <td <TMPL_IF NAME="high_light_kick_off">style="background-color:yellow;"</TMPL_IF>>
                 <TMPL_VAR NAME="kick_off">
             </td>
-            <td>
+            <td <TMPL_IF NAME="high_light_style_fix">style="background-color:yellow;"</TMPL_IF>>
                 <TMPL_VAR NAME="style_fix">
             </td>
-            <td>
+            <td <TMPL_IF NAME="high_light_development">style="background-color:yellow;"</TMPL_IF>>
                 <TMPL_VAR NAME="development">
             </td>
-            <td>
+            <td <TMPL_IF NAME="high_light_codereview_sh">style="background-color:yellow;"</TMPL_IF>>
                 <TMPL_VAR NAME="codereview_sh">
             </td>
-            <td>
-                <TMPL_VAR ESCAPE=HTML NAME="codereview_jp">
+            <td <TMPL_IF NAME="high_light_codereview_jp">style="background-color:yellow;"</TMPL_IF>>
+                <TMPL_VAR NAME="codereview_jp">
             </td>
-            <td>
+            <td <TMPL_IF NAME="high_light_qa_jp">style="background-color:yellow;"</TMPL_IF>>
                 <TMPL_VAR NAME="qa_jp">
             </td>
             <td>
@@ -103,11 +98,13 @@
             </td>
         </tr>
         </TMPL_LOOP>
+        <TMPL_IF NAME="page">
         <tr>
             <td colspan="2">
                 <TMPL_INCLUDE NAME="paginator.tmpl">
             </td>
         </tr>
+        </TMPL_IF>
 
         <TMPL_INCLUDE NAME="../footer.tmpl">
     </table>

@@ -15,7 +15,7 @@ sub validate {
         codereview_sh => ['NOT_BLANK', 'UINT'],
         codereview_jp => ['NOT_BLANK', 'UINT'],
         qa_jp => ['NOT_BLANK', 'UINT'],
-        date_to_release => ['NOT_BLANK', ['DATETIME_STRPTIME','%Y-%m-%d']],
+        date_to_release => [['DATETIME_STRPTIME','%Y-%m-%d']],
         developers => ['NOT_BLANK']
     ]);
     return ($result->has_error, $result);

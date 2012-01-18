@@ -63,7 +63,7 @@ CREATE TABLE `project` (
     `codereview_sh` int(3) NOT NULL,
     `codereview_jp` int(3) NOT NULL,
     `qa_jp` int(3) NOT NULL,
-    `date_to_release` date NOT NULL,
+    `date_to_release` text NOT NULL,
     `status` text,
     `notes` text,
     `developers` text NOT NULL,

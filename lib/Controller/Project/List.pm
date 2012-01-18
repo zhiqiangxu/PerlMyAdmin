@@ -52,9 +52,16 @@ sub display {
             }
         }
     } unless $page_ref->{START} eq $page_ref->{END};
+    my $page;
+    if(@$paginator){
+        $page = 1;
+    }
+    else{
+        $page = 0;
+    }
     $self->set_main('project_list.pl/main.tmpl');
     $self->template('main.tmpl', ['../tmpl/project_list.pl']);
-    my %params = (closedloop => \@closedloop, pageloop => $paginator, pageleft => $page_ref->{LEFT}, pageright => $page_ref->{RIGHT}, studentloop => $records_ref, name => $name);
+    my %params = (closedloop => \@closedloop, page => $page, pageloop => $paginator, pageleft => $page_ref->{LEFT}, pageright => $page_ref->{RIGHT}, studentloop => $records_ref, name => $name);
     $self->output(%params);
 }
 

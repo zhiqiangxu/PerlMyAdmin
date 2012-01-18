@@ -18,7 +18,7 @@
     </TMPL_IF>
     </div>
     <form method="POST">
-    <table>
+    <table border=1 style="border-collapse:collapse;">
         <tr>
             <td>项目</td>
             <td>
@@ -45,19 +45,19 @@
             </td>
         </tr>
         <tr>
-            <td>sh审核</td>
+            <td>sh_cr</td>
             <td>
                 <TMPL_VAR NAME="codereview_sh"> 
             </td>
         </tr>
         <tr>
-            <td>jp审核</td>
+            <td>jp_cr</td>
             <td>
                 <TMPL_VAR NAME="codereview_jp"> 
             </td>
         </tr>
         <tr>
-            <td>jp质检</td>
+            <td>jp_qa</td>
             <td>
                 <TMPL_VAR NAME="qa_jp"> 
             </td>
@@ -100,10 +100,16 @@
         </tr>
         <tr>
             <td>
-                <input type="submit" value="删除" />
+                <input type="psw" name="psw" value="<TMPL_VAR NAME="psw">" />
             </td>
             <td>
-                <input type="button" value="取消" onclick="javascript:window.location = '<TMPL_VAR NAME="referrer">'" />
+                <input type="submit" value="删除" />
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <input type="button" value="取消" onclick="javascript:window.location = 'project_view.pl?id=<TMPL_VAR NAME="id">'" />
             </td>
         </tr>
 

@@ -5,7 +5,7 @@ use base qw/Controller::Project/;
 use Model::Student;
 use Model::Province;
 use Model::City;
-use Constants qw/TRUE FALSE/;
+use Constants qw/TRUE FALSE DELETE_PSW/;
 use CGI qw/header/;
 use Date::Calc qw/Today Delta_Days/;
 
@@ -16,7 +16,10 @@ sub display {
     my $student = Model::Student->new;
     my $message;
     if('POST' eq $self->query->request_method){
-        if($self->do_table_delete('project', TRUE)){
+        if(DELETE_PSW ne $self->param('psw')){
+            $message = '密码错误';
+        }
+        elsif($self->do_table_delete('project', TRUE)){
             $self->redirect($self->generate_uri({random =>  rand()}, 'project_list.pl'));
             exit;
         }
@@ -30,7 +33,7 @@ sub display {
     $self->modify_days_outlook([$row]);
     $self->set_main('project_delete.pl/main.tmpl');
     $self->template('main.tmpl', ['../tmpl/project_delete.pl']);
-    $self->output(%$row, message => $message, referrer => $self->param('referrer') ? $self->param('referrer') : $self->query->referer);
+    $self->output($self->param('psw') ? (psw => $self->param('psw')) : (), %$row, message => $message, referrer => $self->param('referrer') ? $self->param('referrer') : $self->query->referer);
 
 }
 
