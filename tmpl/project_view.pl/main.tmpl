@@ -1,0 +1,100 @@
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <div id="message">
+    <TMPL_IF NAME="message">
+        <TMPL_VAR NAME="message">
+        <hr />
+    </TMPL_IF>
+    </div>
+    <div id="error">
+    <TMPL_IF NAME="error">
+        <TMPL_VAR NAME="error">
+        <hr />
+    </TMPL_IF>
+    </div>
+    <table>
+        <tr>
+            <td>项目</td>
+            <td>
+                <TMPL_VAR NAME="name">
+            </td>
+        </tr>
+        <tr>
+            <td>kick_off</td>
+            <td>
+                <TMPL_VAR NAME="kick_off"> 
+            </td>
+        </tr>
+        <tr>
+            <td>式样fix</td>
+            <td>
+                <TMPL_VAR NAME="style_fix"> 
+            </td>
+        </tr>
+        <tr>
+            <td>开发</td>
+            <td>
+                <TMPL_VAR NAME="development"> 
+            </td>
+        </tr>
+        <tr>
+            <td>sh审核</td>
+            <td>
+                <TMPL_VAR NAME="codereview_sh"> 
+            </td>
+        </tr>
+        <tr>
+            <td>jp审核</td>
+            <td>
+                <TMPL_VAR NAME="codereview_jp"> 
+            </td>
+        </tr>
+        <tr>
+            <td>jp质检</td>
+            <td>
+                <TMPL_VAR NAME="qa_jp"> 
+            </td>
+        </tr>
+        <tr>
+            <td>发布日期</td>
+            <td>
+                <TMPL_VAR NAME="date_to_release"> 
+            </td>
+        </tr>
+        <tr>
+            <td>状态</td>
+            <td>
+                <TMPL_VAR NAME="status"> 
+            </td>
+        </tr>
+        <tr>
+            <td>理论状态</td>
+            <td>
+                <TMPL_VAR NAME="logic_status"> 
+            </td>
+        </tr>
+        <tr>
+            <td>备注</td>
+            <td>
+                <TMPL_VAR NAME="notes"> 
+            </td>
+        </tr>
+        <tr>
+            <td>开发人员</td>
+            <td>
+                <TMPL_VAR NAME="developers">
+            </td>
+        </tr>
+        <tr>
+            <td>已关闭</td>
+            <td>
+                <TMPL_IF NAME="closed">是<TMPL_ELSE>否</TMPL_IF>
+            </td>
+        </tr>
+
+        <TMPL_INCLUDE NAME="../footer.tmpl">
+    </table>
+    <a href="project_list.pl">返回项目列表</a>
+</body>

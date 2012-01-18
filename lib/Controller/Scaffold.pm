@@ -181,7 +181,7 @@ sub do_table_insert {
     my $dml = "INSERT INTO $model_name $binding_string";
 
     my $result = $model->execute($dml, @bindings);
-    return $result if $return;
+    return $result ? $model->last_insert_id : $result if $return;
 
     if(undef eq $result){
         my $msg = "Invalid value!";

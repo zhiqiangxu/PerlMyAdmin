@@ -53,3 +53,22 @@ CREATE TABLE major (
 	name VARCHAR(256) NOT NULL,
 	PRIMARY KEY (id)
 ) ENGINE=MyISAM;
+
+CREATE TABLE `project` (
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    `kick_off` date NOT NULL,
+    `style_fix` int(3) NOT NULL,
+    `development` int(3) NOT NULL,
+    `codereview_sh` int(3) NOT NULL,
+    `codereview_jp` int(3) NOT NULL,
+    `qa_jp` int(3) NOT NULL,
+    `date_to_release` date NOT NULL,
+    `status` text,
+    `notes` text,
+    `developers` text NOT NULL,
+    `closed` tinyint(1) DEFAULT '0',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+

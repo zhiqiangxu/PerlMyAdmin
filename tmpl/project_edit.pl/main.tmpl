@@ -1,0 +1,135 @@
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <div id="message">
+    <TMPL_IF NAME="message">
+        <TMPL_VAR NAME="message">
+        <hr />
+    </TMPL_IF>
+    </div>
+    <div id="error">
+    <TMPL_IF NAME="error">
+        <TMPL_VAR NAME="error">
+        <hr />
+    </TMPL_IF>
+    </div>
+    <form method="POST">
+        <table>
+            <tr>
+                <td>
+                    项目
+                </td>
+                <td>
+                    <input type="hidden" name="id" value="<TMPL_VAR NAME="id">" />
+                    <input type="text" name="name" value="<TMPL_VAR NAME="name">" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    kick_off
+                </td>
+                <td>
+                    <input type="text" name="kick_off" value="<TMPL_VAR NAME="kick_off">" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    式样fix
+                </td>
+                <td>
+                    <input type="text" name="style_fix" value="<TMPL_VAR NAME="style_fix">" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    开发
+                </td>
+                <td>
+                    <input type="text" name="development" value="<TMPL_VAR NAME="development">" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    sh审核
+                </td>
+                <td>
+                    <input type="text" name="codereview_sh" value="<TMPL_VAR NAME="codereview_sh">" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    jp审核
+                </td>
+                <td>
+                    <input type="text" name="codereview_jp" value="<TMPL_VAR NAME="codereview_jp">" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    jp质检
+                </td>
+                <td>
+                    <input type="text" name="qa_jp" value="<TMPL_VAR NAME="qa_jp">" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    发布日期
+                </td>
+                <td>
+                    <input type="text" name="date_to_release" value="<TMPL_VAR NAME="date_to_release">" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    状态
+                </td>
+                <td>
+                    <input type="text" name="status" value="<TMPL_VAR NAME="status">" />
+                </td>
+            </tr>
+            <tr>
+                <td>理论状态</td>
+                <td>
+                    <TMPL_VAR NAME="logic_status"> 
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    备注
+                </td>
+                <td>
+                    <textarea name="notes"><TMPL_VAR NAME="notes"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    开发者
+                </td>
+                <td>
+                    <textarea name="developers"><TMPL_VAR NAME="developers"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    关闭
+                </td>
+                <td>
+                    <input type="checkbox" name="closed" value="1" <TMPL_IF NAME="closed">checked="checked"</TMPL_IF> >
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" value="Submit" />
+                </td>
+                 <td>
+                    <input onclick="javascript:window.location='project_list.pl';" type="button" value="Back" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <TMPL_INCLUDE NAME="../footer.tmpl">
+</body>

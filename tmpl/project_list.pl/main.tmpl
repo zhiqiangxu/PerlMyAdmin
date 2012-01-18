@@ -1,0 +1,114 @@
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <a href="project_add.pl">New</a>
+            </td>
+        </tr>
+    </table>
+    <hr />
+    <form method="GET">
+        <table>
+            <tr>
+                <td>
+                    <span>项目名称</span>
+                </td>
+                <td>
+                    <input type="text" name="name" id="search_text" value="<TMPL_VAR NAME="name" ESCAPE=HTML>" />
+                </td>
+                <td>
+                    <span>是否关闭</span>
+                </td>
+                <td>
+                    <select name="closed" id="closed">
+                        <option value="-1">--</option>
+                        <TMPL_LOOP NAME="closedloop">
+                            <option value="<TMPL_VAR NAME="value">" <TMPL_IF NAME="selected">selected="selected"</TMPL_IF>><TMPL_VAR NAME="name"></option>
+                        </TMPL_LOOP>
+                    </select>
+                </td>
+                <td>
+                    <input type="submit" value="搜索" id="search_button" />
+                </td>
+                <td>
+                    <input type="button" value="重置" id="reset" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <hr />
+    <table>
+        <tr>
+            <th>操作</th>
+            <th>项目</th>
+            <th>kick_off</th>
+            <th>式样fix</th>
+            <th>开发</th>
+            <th>sh审核</th>
+            <th>jp审核</th>
+            <th>jp质检</th>
+            <th>发布日期</th>
+            <th>状态</th>
+            <th>理论状态</th>
+            <th>开发者</th>
+            <th>已关闭</th>
+        </tr>
+        <TMPL_LOOP NAME="studentloop">
+        <tr>    
+            <td>
+                <span><a href="project_view.pl?id=<TMPL_VAR NAME="id">">View</a></span>
+                |
+                <span><a href="project_edit.pl?id=<TMPL_VAR NAME="id">">Edit</a></span>
+                |
+                <span><a href="project_delete.pl?id=<TMPL_VAR NAME="id">">Delete</span>
+            </td>
+            <td style="width:150px;overflow:hidden;">
+                <TMPL_VAR ESCAPE=HTML NAME="name">
+            </td>
+            <td>
+                <TMPL_VAR NAME="kick_off">
+            </td>
+            <td>
+                <TMPL_VAR NAME="style_fix">
+            </td>
+            <td>
+                <TMPL_VAR NAME="development">
+            </td>
+            <td>
+                <TMPL_VAR NAME="codereview_sh">
+            </td>
+            <td>
+                <TMPL_VAR ESCAPE=HTML NAME="codereview_jp">
+            </td>
+            <td>
+                <TMPL_VAR NAME="qa_jp">
+            </td>
+            <td>
+                <TMPL_VAR NAME="date_to_release">
+            </td>
+            <td>
+                <TMPL_VAR NAME="status">
+            </td>
+            <td>
+                <TMPL_VAR NAME="logic_status">
+            </td>
+            <td>
+                <TMPL_VAR NAME="developers">
+            </td>
+            <td>
+                <TMPL_IF NAME="closed">是<TMPL_ELSE>否</TMPL_IF>
+            </td>
+        </tr>
+        </TMPL_LOOP>
+        <tr>
+            <td colspan="2">
+                <TMPL_INCLUDE NAME="paginator.tmpl">
+            </td>
+        </tr>
+
+        <TMPL_INCLUDE NAME="../footer.tmpl">
+    </table>
+</body>

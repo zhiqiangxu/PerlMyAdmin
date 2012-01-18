@@ -105,5 +105,10 @@ sub query {
     }
 }
 
+sub last_insert_id {
+    my ($self) = @_;
+    return unless $self->dbh;
+    return $self->dbh->{mysql_insertid};
+}
 
 1
