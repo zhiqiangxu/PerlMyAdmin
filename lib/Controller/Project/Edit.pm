@@ -60,7 +60,7 @@ sub display {
     my ($self) = @_; 
     my ($message, $error, $submited_params);
     if('POST' eq $self->query->request_method){
-        $self->param('closed', 0) if($self->param('closed'));
+        $self->param(-name => 'closed', -value => 0) unless($self->param('closed'));
         my ($fail, $result) = $self->validate($self->query);
         if($fail){
             $message = '参数有误';

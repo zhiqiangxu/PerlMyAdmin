@@ -67,8 +67,8 @@ sub generate_uri {
 }
 
 sub param {
-    my ($self, $key) = @_;
-    return $self->query->param($key);
+    my $self = shift;
+    return $self->query->param(@_);
 }
 
 sub url_param {
