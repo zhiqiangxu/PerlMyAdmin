@@ -18,7 +18,7 @@
         <tr>
             <td>项目</td>
             <td>
-                <TMPL_VAR NAME="name">
+                <TMPL_VAR NAME="name" ESCAPE=HTML>
             </td>
         </tr>
         <tr>
@@ -78,7 +78,7 @@
         <tr>
             <td>备注</td>
             <td>
-                <TMPL_VAR NAME="notes"> 
+                <pre><TMPL_VAR NAME="notes"></pre>
             </td>
         </tr>
         <tr>

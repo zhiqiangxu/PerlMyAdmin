@@ -21,7 +21,10 @@ sub calculate_logical_status {
     my $days_remain = Delta_Days(@today, split('-', $kick_off));
     my @stages = qw/style_fix development codereview_sh codereview_jp qa_jp/;
     my %status = (style_fix => '式样fix', development => '开发', codereview_sh => 'sh_cr', codereview_jp => 'jp_cr', qa_jp => 'jp_qa');
-    if($days_remain >= 0){
+    if(0 == $days_remain){
+        return ('kick_off', 'kick_off')
+    }
+    elsif($days_remain < 0){
         my @tmp_date = split('-', $kick_off);
         for my $stage (@stages){
             @tmp_date = add_delta_work_days(@tmp_date, $quota->{$stage});
@@ -51,20 +54,43 @@ sub add_delta_work_days {
     return @tmp_date;
 }
 
+sub _day_of_week {
+    my ($date) = @_;
+    my %week_days = (1 => '一', 2 => '二', 3 => '三', 4 => '四', 5 => '五', 6 => '六', 7 => '日');
+    eval {
+        return $week_days{Day_of_Week(split('-', $date))};
+    };
+}
+
 sub modify_days_outlook {
     my ($self, $records) = @_;
     my @stages = qw/kick_off style_fix development codereview_sh codereview_jp qa_jp/;
-    my %week_days = (1 => '周一', 2 => '周二', 3 => '周三', 4 => '周四', 5 => '周五', 6 => '周六', 7 => '周日');
     for my $record (@$records){
+        $record->{kick_off_bak_date} = $record->{kick_off};
         for(my $i = 1; $i < @stages; $i++){
+            $record->{$stages[$i] . '_bak'} = $record->{$stages[$i]};
+            unless($record->{$stages[$i] . '_bak'}){
+                $record->{$stages[$i]} = '--';
+                $record->{$stages[$i] . '_bak_date'} = $record->{$stages[$i - 1] . '_bak_date'};
+                next;
+            }
             $record->{$stages[$i]} = join('-', add_delta_work_days(split('-', $record->{$stages[$i - 1]}), $record->{$stages[$i]})); 
+            $record->{$stages[$i] . '_bak_date'} = $record->{$stages[$i]};
         }
         for(my $i = 1; $i < @stages; $i++){
-            $record->{$stages[$i]} .= '<br />(' . $week_days{Day_of_Week(split('-', $record->{$stages[$i]}))} . ')';
+            unless($record->{$stages[$i] . '_bak'}){
+                next;
+            }
+            $record->{$stages[$i]} = $record->{$stages[$i] . '_bak'} . 'd<br />' 
+                                     . join('-', add_delta_work_days(split('-', $record->{$stages[$i - 1] . '_bak_date'}), 1))
+                                     . '<br />(' . _day_of_week(join('-', add_delta_work_days(split('-', $record->{$stages[$i - 1] . '_bak_date'}), 1))) . ')'
+                                     . '<br />至<br />'
+                                     . $record->{$stages[$i]} 
+                                     . '<br />(' . _day_of_week($record->{$stages[$i]}) . ')';
         }
         eval {
-            $record->{kick_off} .= '<br />(' . $week_days{Day_of_Week(split('-', $record->{kick_off}))}. ')';
-            $record->{date_to_release} .= '<br />(' . $week_days{Day_of_Week(split('-', $record->{date_to_release}))}. ')' if $record->{date_to_release};
+            $record->{kick_off} .= '<br />(' . _day_of_week($record->{kick_off}). ')';
+            $record->{date_to_release} .= '<br />(' . _day_of_week($record->{date_to_release}) if $record->{date_to_release};
         };
     }
 }
