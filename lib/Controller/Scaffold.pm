@@ -91,7 +91,7 @@ sub do_table_delete {
 
     return $result if $return;
 
-    if(undef eq $result){
+    unless(defined $result){
         my $msg = "Believe or not, IT JUST FAILED!";
 #this is done mainly to keep the order of columns in the form
         my $record_ref = $model->query("SELECT * FROM $model_name WHERE $pk_ref->{Column_name}=" . $self->param($pk_ref->{Column_name}), undef, TRUE);
@@ -136,7 +136,7 @@ sub do_table_update {
 
     return $result if $return;
 
-    if(undef eq $result){
+    unless(defined $result){
         my $msg = "Invalid value!";
 #this is done mainly to keep the order of columns in the form
         my $record_ref = $model->query("SELECT * FROM $model_name WHERE $pk_ref->{Column_name}=" . $self->param($pk_ref->{Column_name}), undef, TRUE);
@@ -183,7 +183,7 @@ sub do_table_insert {
     my $result = $model->execute($dml, @bindings);
     return $result ? $model->last_insert_id : $result if $return;
 
-    if(undef eq $result){
+    unless(defined $result){
         my $msg = "Invalid value!";
 #this is done mainly to keep the order of columns in the form
         my $record_ref = $model->query("SELECT * FROM $model_name WHERE $pk_ref->{Column_name}=" . $self->param($pk_ref->{Column_name}), undef, TRUE);
